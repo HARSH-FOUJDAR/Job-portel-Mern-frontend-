@@ -17,8 +17,9 @@ const useGetAllJobs = () => {
           "https://job-portel-mern-backend.onrender.com/api/job/get/",
           {
             headers: {
-              Authorization: `Bearer ${user.token}`, // <-- Direct token pass
+              Authorization: `Bearer ${user.token}`,
             },
+            withCredentials: true, 
           },
         );
 

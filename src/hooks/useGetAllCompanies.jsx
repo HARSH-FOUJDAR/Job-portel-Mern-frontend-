@@ -16,7 +16,7 @@ const useGetAllCompanies = () => {
           "https://job-portel-mern-backend.onrender.com/api/company/companies",
           {
             headers: {
-              Authorization: `Bearer ${user.token}`, // <-- Direct token pass
+              Authorization: `Bearer ${user.token}`,
             },
           },
         );

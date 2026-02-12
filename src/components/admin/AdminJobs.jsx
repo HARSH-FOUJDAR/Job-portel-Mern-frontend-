@@ -13,7 +13,7 @@ const AdminJobs = () => {
         <h1>All Jobs</h1>
         <Button
           onClick={() => navigate("/admin/create/job")}
-          className="bg-orange-500 text-white hover:bg-orange-600  "
+          className="bg-orange-500 text-white hover:bg-orange-600  rounded-2xl"
         >
           Create New
         </Button>

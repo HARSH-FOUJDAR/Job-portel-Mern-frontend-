@@ -109,7 +109,7 @@ const CreateJobs = () => {
               name="title"
               value={inputs.title}
               onChange={onChangeHandler}
-              placeholder="e.g. Senior Frontend Engineer"
+              placeholder="Job Title"
               required
             />
           </div>
@@ -120,7 +120,7 @@ const CreateJobs = () => {
               name="location"
               value={inputs.location}
               onChange={onChangeHandler}
-              placeholder="e.g. Remote, Mumbai"
+              placeholder="Location"
               required
             />
           </div>
@@ -143,7 +143,7 @@ const CreateJobs = () => {
               name="salary"
               value={inputs.salary}
               onChange={onChangeHandler}
-              placeholder="e.g. 12"
+              placeholder="salary in LPA"
               required
             />
           </div>
@@ -154,7 +154,7 @@ const CreateJobs = () => {
               name="experienceLevel"
               value={inputs.experienceLevel}
               onChange={onChangeHandler}
-              placeholder="e.g. 2-5"
+              placeholder="Experience in years"
               required
             />
           </div>
@@ -187,7 +187,7 @@ const CreateJobs = () => {
               name="requirements"
               value={inputs.requirements}
               onChange={onChangeHandler}
-              placeholder="React, Node.js, Tailwind..."
+              placeholder="List of skills and qualifications"
               required
             />
           </div>
