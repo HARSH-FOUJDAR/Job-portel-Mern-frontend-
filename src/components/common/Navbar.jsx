@@ -19,7 +19,7 @@ const Navbar = () => {
 
   const logoutHandler = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/user/logout", {
+      const res = await axios.get("https://job-portel-mern-backend.onrender.com/api/user/logout", {
         withCredentials: true,
       });
 

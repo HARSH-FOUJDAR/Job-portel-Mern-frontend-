@@ -9,7 +9,7 @@ const useGetAllAdminJobs = () => {
     const getAllAdminJobs = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:4000/api/job/get-admin-jobs",
+          "https://job-portel-mern-backend.onrender.com/job/get-admin-jobs",
           {
             withCredentials: true,
           }

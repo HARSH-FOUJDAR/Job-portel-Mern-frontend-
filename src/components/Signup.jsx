@@ -52,7 +52,7 @@ const Signup = () => {
     try {
       dispatch(setLoading(true));
       const response = await axios.post(
-        "http://localhost:4000/api/user/signup",
+        "https://job-portel-mern-backend.onrender.com/api/user/signup",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

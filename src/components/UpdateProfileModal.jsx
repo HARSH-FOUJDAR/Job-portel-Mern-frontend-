@@ -37,7 +37,7 @@ const UpdateProfileModal = ({ isOpen, setIsOpen }) => {
     try {
       setLoading(true);
       const response = await axios.put(
-        "http://localhost:4000/api/user/update",
+        "https://job-portel-mern-backend.onrender.com/api/user/update",
         formData,
         {
           headers: {

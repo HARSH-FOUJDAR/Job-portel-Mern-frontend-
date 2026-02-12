@@ -7,7 +7,7 @@ const useGetAllJobs = () => {
   useEffect(() => {
     const getAllJobs = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/job/get/", {
+        const response = await axios.get("https://job-portel-mern-backend.onrender.com/api/job/get/", {
           withCredentials: true,
         });
         console.log("response", response);

@@ -59,7 +59,7 @@ const UpdateCompany = () => {
     try {
       setLoading(true);
       const response = await axios.put(
-        `http://localhost:4000/api/company/update/${companyId}`,
+        `https://job-portel-mern-backend.onrender.com/api/company/update/${companyId}`,
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

@@ -27,7 +27,7 @@ const JobDescription = () => {
     const fetchSingleJob = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/api/job/get-single/${jobId}`,
+          `https://job-portel-mern-backend.onrender.com/api/job/get-single/${jobId}`,
           { withCredentials: true },
         );
         if (response.data.success) {
@@ -50,7 +50,7 @@ const JobDescription = () => {
   const handleJobApply = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:4000/api/application/apply/${jobId}`,
+        `https://job-portel-mern-backend.onrender.com/api/application/apply/${jobId}`,
         {},
         { withCredentials: true },
       );
