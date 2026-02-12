@@ -28,24 +28,24 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    // Basic validation
     if (!inputs.role) {
       return toast.error("Please select a role");
     }
 
     try {
       dispatch(setLoading(true));
+
       const response = await axios.post(
         "https://job-portel-mern-backend.onrender.com/api/user/signin",
         inputs,
         {
           headers: { "Content-Type": "application/json" },
-          withCredentials: true,
         },
       );
 
       if (response.data.success) {
-        dispatch(setUser(response.data.user));
+        const token = response.data.token; // get token from response
+        dispatch(setUser({ ...response.data.user, token })); // store token in redux or localStorage
         toast.success(response.data.message);
         navigate("/");
       }

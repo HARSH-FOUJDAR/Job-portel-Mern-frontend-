@@ -55,7 +55,8 @@ const Signup = () => {
         "https://job-portel-mern-backend.onrender.com/api/user/signup",
         formData,
         {
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: { "Content-Type": "application/json" },
+
           withCredentials: true,
         },
       );

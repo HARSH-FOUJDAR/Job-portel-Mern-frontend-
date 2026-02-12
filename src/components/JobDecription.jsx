@@ -25,14 +25,22 @@ const JobDescription = () => {
   // Fetch Job Details
   useEffect(() => {
     const fetchSingleJob = async () => {
+      if (!token) return; // agar token missing, fetch na karo
+
       try {
         const response = await axios.get(
           `https://job-portel-mern-backend.onrender.com/api/job/get-single/${jobId}`,
-          { withCredentials: true },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // <-- Direct token pass
+            },
+          },
         );
+
         if (response.data.success) {
           dispatch(setSingleJob(response.data.job));
-          // Sync application status
+
+          // Application status sync
           setIsApplied(
             response.data.job.application.some(
               (item) => item.applicant === user?._id,
@@ -40,19 +48,28 @@ const JobDescription = () => {
           );
         }
       } catch (error) {
-        console.error("Error fetching job details:", error);
+        console.error(
+          "Error fetching job details:",
+          error.response?.data?.message || error,
+        );
       }
     };
+
     fetchSingleJob();
-  }, [jobId, dispatch, user?._id]);
+  }, [jobId, dispatch, user?._id, token]); // token dependency add karo
 
   // Apply Logic
   const handleJobApply = async () => {
     try {
+      const token = user.token; // Redux / localStorage
       const response = await axios.post(
         `https://job-portel-mern-backend.onrender.com/api/application/apply/${jobId}`,
         {},
-        { withCredentials: true },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
       );
 
       if (response.data.success) {
