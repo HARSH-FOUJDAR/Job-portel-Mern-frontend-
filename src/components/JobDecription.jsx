@@ -57,41 +57,40 @@ const JobDescription = () => {
     fetchSingleJob();
   }, [jobId, dispatch, user?._id, token]); // token dependency add karo
 
-const handleJobApply = async () => {
-  const token = user?.token || localStorage.getItem("token");
+  const handleJobApply = async () => {
+    const token = user?.token || localStorage.getItem("token");
 
-  if (!token) {
-    toast.error("Please login to apply for job");
-    return;
-  }
-
-  try {
-    const response = await axios.post(
-      `https://job-portel-mern-backend.onrender.com/api/application/apply/${jobId}`,
-      {}, 
-      {
-        headers: {
-          Authorization: `Bearer ${token}`, 
-        },
-      }
-    );
-
-    if (response.data.success) {
-      toast.success(response.data.message);
-      setIsApplied(true);
-
-      const updatedSingleJob = {
-        ...singleJob,
-        application: [...singleJob.application, { applicant: user?._id }],
-      };
-      dispatch(setSingleJob(updatedSingleJob));
+    if (!token) {
+      toast.error("Please login to apply for job");
+      return;
     }
-  } catch (error) {
-    toast.error(error.response?.data?.message || "Something went wrong");
-    console.error("Apply Job Error:", error.response?.data || error);
-  }
-};
 
+    try {
+      const response = await axios.post(
+        `https://job-portel-mern-backend.onrender.com/api/application/apply/${jobId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        setIsApplied(true);
+
+        const updatedSingleJob = {
+          ...singleJob,
+          application: [...singleJob.application, { applicant: user?._id }],
+        };
+        dispatch(setSingleJob(updatedSingleJob));
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Something went wrong");
+      console.error("Apply Job Error:", error.response?.data || error);
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto my-10 px-4">
@@ -172,7 +171,7 @@ const handleJobApply = async () => {
   );
 };
 
-// Reusable Helper Component for layout consistency
+
 const DetailItem = ({ label, value }) => (
   <div className="flex items-center gap-3">
     <span className="font-bold text-slate-800 min-w-[150px]">{label}:</span>

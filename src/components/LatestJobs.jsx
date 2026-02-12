@@ -1,15 +1,15 @@
 import { useSelector } from "react-redux";
 import JobCard from "./JobCard";
 import { motion } from "framer-motion"; // Smooth entry animations ke liye
+import { setAllJobs } from "@/redux/jobSlice";
 
 const LatestJobs = () => {
   const { allJobs } = useSelector((store) => store.job);
-
   return (
-    <div className="max-w-7xl mx-auto my-20 px-4 md:px-8">
+    <div className="max-w-7xl mx-auto my-20 px-4 md:px-8 ">
       {/* Section Header */}
       <div className="mb-10">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900">
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 ">
           Latest & Top <span className="text-indigo-600">Job Openings</span>
         </h1>
         <p className="text-slate-500 mt-2 text-lg">
@@ -22,7 +22,7 @@ const LatestJobs = () => {
         {allJobs.length <= 0 ? (
           <div className="col-span-full flex flex-col items-center justify-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
             <span className="text-slate-400 font-medium text-lg">
-              No Jobs Available at the moment.
+              No Jobs Available at the moment. Pls Login as Recruiter and Post some jobs.
             </span>
           </div>
         ) : (

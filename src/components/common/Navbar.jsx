@@ -46,7 +46,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
+    <div className="bg-white rounded-2xl  border-b border-slate-100 sticky z-50 shadow-sm">
       <div className="flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-8 h-16">
         {/* Left Section: Branding */}
         <Link to="/">
@@ -56,7 +56,7 @@ const Navbar = () => {
         </Link>
 
         {/* Middle Section: Links */}
-        <div className="hidden md:flex items-center gap-8 font-medium text-slate-600">
+        <div className="hidden md:flex items-center rounded-2xl gap-8 font-medium text-slate-600">
           <ul className="flex items-center gap-6">
             {user?.role === "recruiter" ? (
               <>
