@@ -55,7 +55,7 @@ const CreateJobs = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:4000/api/job/post",
+        "https://job-portel-mern-backend.onrender.com/api/job/post",
         inputs,
         {
           headers: { "Content-Type": "application/json" },

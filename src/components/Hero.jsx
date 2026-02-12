@@ -6,7 +6,7 @@ const Hero = () => {
     <div className="w-full max-w-7xl mx-auto px-4 py-20 flex flex-col items-center justify-center min-h-[70vh]">
       {/* Badge Style Heading */}
       <div className="mb-6 px-4 py-1.5 rounded-full bg-orange-100 text-orange-600 text-sm font-semibold tracking-wide uppercase shadow-sm">
-        No. 1 Job Search Platform :)
+        No. 1 Job Search Platform :
       </div>
 
       {/* Main Heading with dynamic text size */}
