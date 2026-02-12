@@ -9,7 +9,8 @@ const useGetAllJobs = () => {
 
   useEffect(() => {
     const getAllJobs = async () => {
-      if (!user?.token) return; // token missing → fetch skip
+      const token = user?.token || localStorage.getItem("token");
+      if (!token) return; // no token → don’t fetch
 
       try {
         const response = await axios.get(
@@ -18,7 +19,7 @@ const useGetAllJobs = () => {
             headers: {
               Authorization: `Bearer ${user.token}`, // <-- Direct token pass
             },
-          }
+          },
         );
 
         if (response.data.success) {
@@ -27,7 +28,7 @@ const useGetAllJobs = () => {
       } catch (error) {
         console.log(
           "Error in fetching all jobs:",
-          error.response?.data?.message || error
+          error.response?.data?.message || error,
         );
       }
     };

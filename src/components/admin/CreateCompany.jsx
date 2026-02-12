@@ -16,18 +16,26 @@ const CreateCompany = () => {
   const dispatch = useDispatch();
 
   const submitHandler = async (e) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("You must be logged in to create a company");
+      return;
+    }
     e.preventDefault();
     if (!name.trim()) return toast.error("Company name is required");
 
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:4000/api/company/register",
+        "https://job-portel-mern-backend.onrender.com/api/company/register",
         { name },
         {
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
           withCredentials: true,
-        }
+        },
       );
 
       if (response.data.success) {
@@ -47,16 +55,22 @@ const CreateCompany = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 my-10">
       <div className="my-10">
-        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Setup Your Company</h1>
+        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">
+          Setup Your Company
+        </h1>
         <p className="text-slate-500 mt-2">
-          What would you like to give your company name? You can change this later.
+          What would you like to give your company name? You can change this
+          later.
         </p>
       </div>
 
       <div className="bg-white border border-slate-200 shadow-sm rounded-2xl p-8 md:p-12">
         <div className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name" className="text-sm font-semibold text-slate-700">
+            <Label
+              htmlFor="name"
+              className="text-sm font-semibold text-slate-700"
+            >
               Company Name
             </Label>
             <Input
@@ -77,12 +91,14 @@ const CreateCompany = () => {
             >
               Cancel
             </Button>
-            
+
             <Button
               onClick={submitHandler}
               disabled={loading || !name.trim()}
               className={`px-8 py-6 rounded-xl font-bold transition-all ${
-                loading ? "bg-slate-200" : "bg-indigo-600 hover:bg-indigo-700 shadow-lg shadow-indigo-100 text-white"
+                loading
+                  ? "bg-slate-200"
+                  : "bg-indigo-600 hover:bg-indigo-700 shadow-lg shadow-indigo-100 text-white"
               }`}
             >
               {loading ? (

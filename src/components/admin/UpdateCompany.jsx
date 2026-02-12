@@ -46,6 +46,11 @@ const UpdateCompany = () => {
   };
 
   const submitHandler = async (e) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("You must be logged in to update company details");
+      return;
+    }
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", inputs.name);
@@ -62,7 +67,10 @@ const UpdateCompany = () => {
         `https://job-portel-mern-backend.onrender.com/api/company/update/${companyId}`,
         formData,
         {
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: { 
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
           withCredentials: true,
         },
       );
@@ -109,7 +117,7 @@ const UpdateCompany = () => {
                 name="name"
                 value={inputs.name}
                 onChange={onChangeHandler}
-                placeholder="e.g. Microsoft"
+                placeholder="Company Name"
                 className="py-6 rounded-xl border-slate-200 focus:ring-indigo-500"
               />
             </div>
@@ -124,7 +132,7 @@ const UpdateCompany = () => {
                 name="website"
                 value={inputs.website}
                 onChange={onChangeHandler}
-                placeholder="https://company.com"
+                placeholder="Company Website"
                 className="py-6 rounded-xl border-slate-200 focus:ring-indigo-500"
               />
             </div>
@@ -139,7 +147,7 @@ const UpdateCompany = () => {
                 name="location"
                 value={inputs.location}
                 onChange={onChangeHandler}
-                placeholder="e.g. Hyderabad, India"
+                placeholder="city, country"
                 className="py-6 rounded-xl border-slate-200 focus:ring-indigo-500"
               />
             </div>
@@ -167,7 +175,7 @@ const UpdateCompany = () => {
                 name="description"
                 value={inputs.description}
                 onChange={onChangeHandler}
-                placeholder="Briefly describe the company culture and goals"
+                placeholder="Brief company overview..."
                 className="py-6 rounded-xl border-slate-200 focus:ring-indigo-500"
               />
             </div>

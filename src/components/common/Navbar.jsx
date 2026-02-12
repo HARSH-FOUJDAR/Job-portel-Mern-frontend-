@@ -18,19 +18,8 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const logoutHandler = async () => {
-    try {
-      const res = await axios.get("https://job-portel-mern-backend.onrender.com/api/user/logout", {
-        withCredentials: true,
-      });
-
-      if (res.data.success) {
-        dispatch(setUser(null));
-        navigate("/");
-        toast.success(res.data.message);
-      }
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Logout failed");
-    }
+    localStorage.clear();
+    navigate("/login");
   };
 
   return (

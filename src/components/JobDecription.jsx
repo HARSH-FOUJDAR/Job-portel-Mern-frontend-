@@ -11,7 +11,7 @@ const JobDescription = () => {
   const params = useParams();
   const jobId = params.id;
   const dispatch = useDispatch();
-
+  const token = localStorage.getItem("token");
   const { user } = useSelector((store) => store.auth);
   const { singleJob } = useSelector((store) => store.job);
 
@@ -22,7 +22,6 @@ const JobDescription = () => {
 
   const [isApplied, setIsApplied] = useState(isInitialApplied);
 
-  // Fetch Job Details
   useEffect(() => {
     const fetchSingleJob = async () => {
       if (!token) return; // agar token missing, fetch na karo
@@ -32,7 +31,7 @@ const JobDescription = () => {
           `https://job-portel-mern-backend.onrender.com/api/job/get-single/${jobId}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`, // <-- Direct token pass
+              Authorization: `Bearer ${token}`,
             },
           },
         );
@@ -58,35 +57,41 @@ const JobDescription = () => {
     fetchSingleJob();
   }, [jobId, dispatch, user?._id, token]); // token dependency add karo
 
-  // Apply Logic
-  const handleJobApply = async () => {
-    try {
-      const token = user.token; // Redux / localStorage
-      const response = await axios.post(
-        `https://job-portel-mern-backend.onrender.com/api/application/apply/${jobId}`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+const handleJobApply = async () => {
+  const token = user?.token || localStorage.getItem("token");
+
+  if (!token) {
+    toast.error("Please login to apply for job");
+    return;
+  }
+
+  try {
+    const response = await axios.post(
+      `https://job-portel-mern-backend.onrender.com/api/application/apply/${jobId}`,
+      {}, 
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, 
         },
-      );
-
-      if (response.data.success) {
-        toast.success(response.data.message);
-        setIsApplied(true);
-
-        // Redux State Update taaki count update ho jaye
-        const updatedSingleJob = {
-          ...singleJob,
-          application: [...singleJob.application, { applicant: user?._id }],
-        };
-        dispatch(setSingleJob(updatedSingleJob));
       }
-    } catch (error) {
-      toast.error(error.response?.data?.message || "Something went wrong");
+    );
+
+    if (response.data.success) {
+      toast.success(response.data.message);
+      setIsApplied(true);
+
+      const updatedSingleJob = {
+        ...singleJob,
+        application: [...singleJob.application, { applicant: user?._id }],
+      };
+      dispatch(setSingleJob(updatedSingleJob));
     }
-  };
+  } catch (error) {
+    toast.error(error.response?.data?.message || "Something went wrong");
+    console.error("Apply Job Error:", error.response?.data || error);
+  }
+};
+
 
   return (
     <div className="max-w-7xl mx-auto my-10 px-4">

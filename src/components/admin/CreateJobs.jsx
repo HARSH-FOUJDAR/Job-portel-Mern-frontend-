@@ -49,6 +49,11 @@ const CreateJobs = () => {
   };
 
   const submitHandler = async (e) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("You must be logged in to post a job");
+      return;
+    }
     e.preventDefault();
     if (!inputs.companyId) return toast.error("Please select a company first");
 
@@ -58,12 +63,15 @@ const CreateJobs = () => {
         "https://job-portel-mern-backend.onrender.com/api/job/post",
         inputs,
         {
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },  
           withCredentials: true,
         },
       );
       if (response.data.success) {
-        // Note: Idhar dispatch purani list mein naya job add karne ke liye hona chahiye
+
         toast.success(response.data.message);
         navigate(`/admin/jobs`);
       }

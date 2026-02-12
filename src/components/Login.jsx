@@ -40,12 +40,14 @@ const Login = () => {
         inputs,
         {
           headers: { "Content-Type": "application/json" },
+          withCredentials: true,
         },
       );
 
       if (response.data.success) {
-        const token = response.data.token; // get token from response
-        dispatch(setUser({ ...response.data.user, token })); // store token in redux or localStorage
+        const token = response.data.token;
+        localStorage.setItem("token", token); // save token
+        dispatch(setUser({ ...response.data.user, token })); // save in Redux
         toast.success(response.data.message);
         navigate("/");
       }
