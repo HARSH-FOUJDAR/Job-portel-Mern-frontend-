@@ -75,26 +75,26 @@ const Login = () => {
         <div className="space-y-4">
           <div className="grid w-full items-center gap-1.5">
             <Label htmlFor="email">Email</Label>
-            <Input
+            <input
               type="email"
               value={inputs.email}
               name="email"
               onChange={onChangeHandler}
               placeholder="Your Email"
-              className="focus-visible:ring-indigo-500"
+              className="focus-visible:ring-indigo-500 border border-gray-700 py-2 px-5  rounded-xl"
               required
             />
           </div>
 
           <div className="grid w-full items-center gap-1.5">
             <Label htmlFor="password">Password</Label>
-            <Input
+            <input
               type="password"
               value={inputs.password}
               name="password"
               onChange={onChangeHandler}
               placeholder="Enter your password"
-              className="focus-visible:ring-indigo-500"
+              className="focus-visible:ring-indigo-500 border border-gray-700 py-2 px-5  rounded-xl"
               required
             />
           </div>
@@ -111,12 +111,12 @@ const Login = () => {
               />
               <Label
                 htmlFor="student"
-                className="cursor-pointer font-medium text-slate-600"
+                className="cursor-pointer text-md font-medium text-slate-700"
               >
                 Candidate
               </Label>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center  space-x-2">
               <RadioGroupItem
                 value="recruiter"
                 id="recruiter"
@@ -125,7 +125,7 @@ const Login = () => {
               />
               <Label
                 htmlFor="recruiter"
-                className="cursor-pointer font-medium text-slate-600"
+                className="cursor-pointer text-md font-medium text-slate-600"
               >
                 Recruiter
               </Label>

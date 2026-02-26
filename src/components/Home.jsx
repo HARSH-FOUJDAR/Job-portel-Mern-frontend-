@@ -6,7 +6,8 @@ import LatestJobs from "./LatestJobs";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import Testimonial from "./Testimonial";
+// import JobsPopular from "./PopularRooms";
 const Home = () => {
   useGetAllJobs();
   const navigate = useNavigate();
@@ -22,6 +23,10 @@ const Home = () => {
       <Hero />
       <Category />
       <LatestJobs />
+      <section className="">
+        {/* <JobsPopular></JobsPopular> */}
+        <Testimonial></Testimonial>
+      </section>
       <Footer />
     </div>
   );
