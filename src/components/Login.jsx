@@ -7,7 +7,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { setLoading, setUser } from "@/redux/authSlice";
+import { setUser } from "@/redux/authSlice";
 import { Loader2 } from "lucide-react"; // Professional loading spinner
 
 const Login = () => {
@@ -19,7 +19,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading } = useSelector((store) => store.auth);
+  const [loading , setLoading] = useState(false);
 
   const onChangeHandler = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -27,6 +27,7 @@ const Login = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     if (!inputs.role) {
       return toast.error("Please select a role");
@@ -55,7 +56,7 @@ const Login = () => {
       toast.error(error.response?.data?.message || "Internal Server Error");
       console.error("Login Error:", error);
     } finally {
-      dispatch(setLoading(false));
+      setLoading(false);
     }
   };
 

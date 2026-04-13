@@ -6,11 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { setLoading } from "@/redux/authSlice";
+import { useDispatch } from "react-redux";
+
 import { Loader2 } from "lucide-react"; // Spinner icon
 
 const Signup = () => {
+  const [loading , setLoading] = useState(false);
   const [inputs, setInputs] = useState({
     name: "",
     email: "",
@@ -22,7 +23,7 @@ const Signup = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading } = useSelector((store) => store.auth);
+
 
   const onChangeHandler = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -33,12 +34,14 @@ const Signup = () => {
   };
 
   const submitHandler = async (e) => {
+
     e.preventDefault();
-
+    setLoading(true);
     // Basic Client-side Validation
-    if (!inputs.role)
+    if (!inputs.role){
+      setLoading(false);
       return toast.error("Please select a role (Student or Recruiter)");
-
+  }
     const formData = new FormData();
     formData.append("name", inputs.name);
     formData.append("email", inputs.email);
@@ -50,13 +53,11 @@ const Signup = () => {
     }
 
     try {
-      dispatch(setLoading(true));
       const response = await axios.post(
         "https://job-portel-mern-backend.onrender.com/api/user/signup",
         formData,
         {
-          headers: { "Content-Type": "application/json" },
-
+         
           withCredentials: true,
         },
       );
@@ -69,7 +70,7 @@ const Signup = () => {
       toast.error(error.response?.data?.message || "Signup failed");
       console.error("Signup error", error);
     } finally {
-      dispatch(setLoading(false));
+      setLoading(false);
     }
   };
 

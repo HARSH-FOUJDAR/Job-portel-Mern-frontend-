@@ -27,6 +27,7 @@ const Home = () => {
         {/* <JobsPopular></JobsPopular> */}
         <Testimonial></Testimonial>
       </section>
+      
       <Footer />
     </div>
   );
