@@ -15,8 +15,10 @@ const JobCard = ({ job }) => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Avatar className="h-12 w-12 border border-slate-100 p-1">
+            
             <AvatarImage
               src={job?.company?.logo}
+              
               alt="Company Logo"
               className="object-contain"
             />
@@ -25,16 +27,16 @@ const JobCard = ({ job }) => {
             <h1 className="font-bold text-lg text-slate-900 group-hover:text-blue-600 transition-colors">
               {job?.company?.name}
             </h1>
-            <p className="text-xl font-medium text-slate-800 uppercase tracking-wider">
+            <p className="text-ml font-medium text-slate-800 uppercase tracking-wider">
               <FaLocationDot className="inline  text-md" /> {job?.location}
             </p>
           </div>
         </div>
         <Badge
           variant="outline"
-          className="text-blue-600 border-blue-100 bg-blue-50 font-semibold px-3 py-1"
+          className="text-green-600 border-green-300 bg-green-200 font-semibold px-3 rounded-2xl py-1"
         >
-          New
+          Active
         </Badge>
       </div>
 
@@ -43,9 +45,6 @@ const JobCard = ({ job }) => {
         <h2 className="text-xl font-bold text-slate-800 line-clamp-1">
           {job?.title}
         </h2>
-        <p className="text-sm text-slate-600 mt-2 line-clamp-2 leading-relaxed">
-          {job?.description}
-        </p>
       </div>
 
       {/* Bottom Metadata: Salary & Type */}

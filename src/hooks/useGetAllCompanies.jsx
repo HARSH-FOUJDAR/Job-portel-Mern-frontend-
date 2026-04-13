@@ -13,10 +13,10 @@ const useGetAllCompanies = () => {
 
       try {
         const response = await axios.get(
-          "https://job-portel-mern-backend.onrender.com/api/company/companies",
+          "https://job-portel-mern-backend-harhs-foujdar.onrender.com/api/company/companies",
           {
             headers: {
-              Authorization: `Bearer ${user.token}`,
+              Authorization: `Bearer ${user?.token}`,
             },
           },
         );

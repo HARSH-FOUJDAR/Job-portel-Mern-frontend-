@@ -22,21 +22,21 @@ const CompaniesTable = () => {
   const { companies, searchCompanyByText } = useSelector(
     (store) => store.company,
   );
+
   const [filterCompany, setFilterCompany] = useState(companies);
   const navigate = useNavigate();
 
   // Search Filtering Logic
-  useEffect(() => {
-    const filteredCompany =
-      companies.length > 0 &&
-      companies.filter((company) => {
-        if (!searchCompanyByText) return true;
-        return company?.name
-          ?.toLowerCase()
-          .includes(searchCompanyByText.toLowerCase());
-      });
-    setFilterCompany(filteredCompany);
-  }, [companies, searchCompanyByText]);
+useEffect(() => {
+  const filteredCompany = companies.filter((company) => {
+    if (!searchCompanyByText) return true;
+    return company?.name
+      ?.toLowerCase()
+      .includes(searchCompanyByText.toLowerCase());
+  });
+
+  setFilterCompany(filteredCompany);
+}, [companies, searchCompanyByText]);
 
   return (
     <div className="mt-8 border rounded-xl overflow-hidden shadow-sm bg-white">

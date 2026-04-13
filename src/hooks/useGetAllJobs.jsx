@@ -14,10 +14,10 @@ const useGetAllJobs = () => {
 
       try {
         const response = await axios.get(
-          "https://job-portel-mern-backend.onrender.com/api/job/get/",
+          "https://job-portel-mern-backend-harhs-foujdar.onrender.com/api/job/get",
           {
             headers: {
-              Authorization: `Bearer ${user.token}`,
+              Authorization: `Bearer ${token}`,
             },
             withCredentials: true, 
           },

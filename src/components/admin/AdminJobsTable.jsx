@@ -86,7 +86,6 @@ const AdminJobsTable = () => {
         </Table>
       </div>
     </div>
-    
   );
 };
 

@@ -54,7 +54,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        "https://job-portel-mern-backend.onrender.com/api/user/signup",
+        "https://job-portel-mern-backend-harhs-foujdar.onrender.com/api/user/signup",
         formData,
         {
          

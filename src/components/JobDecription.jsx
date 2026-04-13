@@ -67,7 +67,7 @@ const JobDescription = () => {
 
     try {
       const response = await axios.post(
-        `https://job-portel-mern-backend.onrender.com/api/application/apply/${jobId}`,
+        `https://job-portel-mern-backend-harhs-foujdar.onrender.com/api/application/apply/${jobId}`,
         {},
         {
           headers: {
@@ -170,7 +170,6 @@ const JobDescription = () => {
     </div>
   );
 };
-
 
 const DetailItem = ({ label, value }) => (
   <div className="flex items-center gap-3">

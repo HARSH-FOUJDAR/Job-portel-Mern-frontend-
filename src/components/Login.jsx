@@ -19,7 +19,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [loading , setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onChangeHandler = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -34,10 +34,8 @@ const Login = () => {
     }
 
     try {
-      dispatch(setLoading(true));
-
       const response = await axios.post(
-        "https://job-portel-mern-backend.onrender.com/api/user/signin",
+        "https://job-portel-mern-backend-harhs-foujdar.onrender.com/api/user/signin",
         inputs,
         {
           headers: { "Content-Type": "application/json" },
@@ -48,10 +46,9 @@ const Login = () => {
       if (response.data.success) {
         const token = response.data.token;
         localStorage.setItem("token", token); // save token
-        dispatch(setUser({ ...response.data.user, token })); // save in Redux
         toast.success(response.data.message);
-        navigate("/");
-      }
+        if (role === "student") navigate("/profile");
+      } else if (role === "recruiter") navigate("/");
     } catch (error) {
       toast.error(error.response?.data?.message || "Internal Server Error");
       console.error("Login Error:", error);

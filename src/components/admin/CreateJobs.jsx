@@ -63,15 +63,14 @@ const CreateJobs = () => {
         "https://job-portel-mern-backend.onrender.com/api/job/post",
         inputs,
         {
-          headers: { 
+          headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
-          },  
+          },
           withCredentials: true,
         },
       );
       if (response.data.success) {
-
         toast.success(response.data.message);
         navigate(`/admin/jobs`);
       }
@@ -93,9 +92,12 @@ const CreateJobs = () => {
             Fill in the details to list a new job on your platform.
           </p>
         </div>
-        <Button variant="outline" onClick={() => navigate("/admin/jobs")}>
+        <button
+          className="border-2 px-5 py-1 rounded-2xl bg-orange-600 text-white"
+          onClick={() => navigate("/admin/jobs")}
+        >
           Back
-        </Button>
+        </button>
       </div>
 
       <form
@@ -107,6 +109,10 @@ const CreateJobs = () => {
             <Label className="font-semibold">Job Title</Label>
             <Input
               name="title"
+              className="block
+                  w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200
+                  text-slate-900 text-sm rounded-xl focus:ring-4
+                  focus:ring-emerald-50 focus:border-orange-500 focus:bg-white"
               value={inputs.title}
               onChange={onChangeHandler}
               placeholder="Job Title"
@@ -118,6 +124,10 @@ const CreateJobs = () => {
             <Label className="font-semibold">Location</Label>
             <Input
               name="location"
+              className="block
+                  w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200
+                  text-slate-900 text-sm rounded-xl focus:ring-4
+                  focus:ring-emerald-50 focus:border-orange-500 focus:bg-white"
               value={inputs.location}
               onChange={onChangeHandler}
               placeholder="Location"
@@ -127,18 +137,26 @@ const CreateJobs = () => {
 
           <div className="col-span-full space-y-2">
             <Label className="font-semibold">Description</Label>
-            <Input
+            <textarea
+              className="block
+                  w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200
+                  text-slate-900 text-sm rounded-xl focus:ring-4
+                  focus:ring-emerald-50 focus:border-orange-500 focus:bg-white
+                  transition-all outline-none justify-center"
               name="description"
               value={inputs.description}
               onChange={onChangeHandler}
               placeholder="Detailed job overview..."
-              required
-            />
+            ></textarea>
           </div>
 
           <div className="space-y-2">
             <Label className="font-semibold">Salary (LPA)</Label>
             <Input
+              className="block
+                  w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200
+                  text-slate-900 text-sm rounded-xl focus:ring-4
+                  focus:ring-emerald-50 focus:border-orange-500 focus:bg-white"
               type="number"
               name="salary"
               value={inputs.salary}
@@ -152,6 +170,10 @@ const CreateJobs = () => {
             <Label className="font-semibold">Experience Level (Years)</Label>
             <Input
               name="experienceLevel"
+              className="block
+                  w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200
+                  text-slate-900 text-sm rounded-xl focus:ring-4
+                  focus:ring-emerald-50 focus:border-orange-500 focus:bg-white"
               value={inputs.experienceLevel}
               onChange={onChangeHandler}
               placeholder="Experience in years"
@@ -164,6 +186,10 @@ const CreateJobs = () => {
             <Input
               name="jobType"
               value={inputs.jobType}
+              className="block
+                  w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200
+                  text-slate-900 text-sm rounded-xl focus:ring-4
+                  focus:ring-emerald-50 focus:border-orange-500 focus:bg-white"
               onChange={onChangeHandler}
               placeholder="e.g. Full-time, Internship"
               required
@@ -175,6 +201,10 @@ const CreateJobs = () => {
             <Input
               type="number"
               name="position"
+              className="block
+                  w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200
+                  text-slate-900 text-sm rounded-xl focus:ring-4
+                  focus:ring-emerald-50 focus:border-orange-500 focus:bg-white"
               value={inputs.position}
               onChange={onChangeHandler}
               required
@@ -185,6 +215,10 @@ const CreateJobs = () => {
             <Label className="font-semibold">Requirements (Skills)</Label>
             <Input
               name="requirements"
+              className="block
+                  w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200
+                  text-slate-900 text-sm rounded-xl focus:ring-4
+                  focus:ring-emerald-50 focus:border-orange-500 focus:bg-white"
               value={inputs.requirements}
               onChange={onChangeHandler}
               placeholder="List of skills and qualifications"
@@ -197,7 +231,7 @@ const CreateJobs = () => {
               Selecting Partner Company
             </Label>
             <Select onValueChange={handleSelectChange}>
-              <SelectTrigger className="w-full py-6">
+              <SelectTrigger className="w-full py-6 rounded-xl">
                 <SelectValue placeholder="Which company is hiring?" />
               </SelectTrigger>
               <SelectContent>
