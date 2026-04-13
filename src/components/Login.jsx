@@ -6,9 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "@/redux/authSlice";
-import { Loader2 } from "lucide-react"; // Professional loading spinner
+import { Loader2 } from "lucide-react"; 
 
 const Login = () => {
   const [inputs, setInputs] = useState({
@@ -18,7 +16,6 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
   const onChangeHandler = (e) => {
@@ -45,10 +42,11 @@ const Login = () => {
 
       if (response.data.success) {
         const token = response.data.token;
-        localStorage.setItem("token", token); // save token
+        
         toast.success(response.data.message);
-        if (role === "student") navigate("/profile");
-      } else if (role === "recruiter") navigate("/");
+        if (inputs.role === "student") navigate("/");
+      } else if (inputs.role === "recruiter") navigate("/admin/companies");
+      localStorage.setItem("token", token); 
     } catch (error) {
       toast.error(error.response?.data?.message || "Internal Server Error");
       console.error("Login Error:", error);
